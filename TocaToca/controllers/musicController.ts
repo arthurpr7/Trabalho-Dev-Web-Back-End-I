@@ -6,7 +6,13 @@ import {
   getMusicsByGenre
 } from "../services/musicService";
 
-
+/**
+ * Cria uma nova música com base nos dados fornecidos.
+ * Valida a presença dos campos obrigatórios e repassa ao serviço.
+ * 
+ * @param req Requisição contendo os dados: name, artistId, genre e duration
+ * @param res Resposta com a música criada ou erro de validação/lógica
+ */
 export function createMusicController(req: Request, res: Response): void {
   const { name, artistId, genre, duration } = req.body;
 
@@ -23,13 +29,22 @@ export function createMusicController(req: Request, res: Response): void {
   }
 }
 
-
+/**
+ * Retorna todas as músicas cadastradas.
+ * Útil para exibição geral ou navegação por catálogo completo.
+ */
 export function getAllMusicsController(req: Request, res: Response): void {
   const list = getAllMusics();
   res.status(200).json(list);
 }
 
-
+/**
+ * Retorna músicas filtradas por um gênero específico.
+ * Valida se o parâmetro fornecido está entre os valores permitidos do enum MusicGenre.
+ * 
+ * @param req Requisição com query param `genre` (string)
+ * @param res Resposta com as músicas filtradas ou erro de validação
+ */
 export function getMusicsByGenreController(req: Request, res: Response): void {
   const { genre } = req.query;
 
