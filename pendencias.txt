@@ -1,0 +1,25 @@
+Implementar endpoints e regras de negócio para:⁠
+⁠- Exclusão do artista (somente pode ser excluído caso não tenha músicas relacionadas);
+Arquivos Alterados:
+1- musicService.ts: Exportada a variável musics para permitir acesso em outros módulos.
+2- artistService.ts: Adicionada a função deleteArtist, que verifica se há músicas associadas
+(usando musics.some) e lança um erro se houver, caso contrário exclui o artista.
+3- artistController.ts: Adicionado o controlador deleteArtistController, que valida o ID, chama deleteArtist,
+e retorna status 204 (sucesso), 404 (não encontrado), ou 400 (erros como músicas associadas).
+4- routes.ts: Adicionada a rota DELETE /artist/:id associada ao controlador deleteArtistController.
+
+- Busca de todas as músicas de um mesmo gênero musical;
+Arquivos Alterados:
+1- musicService.ts: Adicionada a função getMusicsByGenre, que filtra músicas pelo gênero especificado.
+2- musicController.ts: Adicionado o controlador getMusicsByGenreController, que valida o parâmetro genre
+(deve ser string e estar no enum MusicGenre) e retorna as músicas filtradas.
+3- routes.ts: Adicionada a rota GET /music/genre associada ao controlador getMusicsByGenreController.
+
+⁠- Busca de todos os artistas com mais de 5 músicas.
+Arquivos Alterados:
+1- artistService.ts: Adicionada a função getArtistsWithMoreThanFiveMusics, que conta músicas por artista
+e retorna aqueles com mais de 5 músicas.
+2- artistController.ts: Adicionado o controlador getArtistsWithMoreThanFiveMusicsController, que chama a
+função do serviço e retorna o resultado.
+3- routes.ts: Adicionada a rota GET /artist/more-than-five-musics associada ao controlador
+getArtistsWithMoreThanFiveMusicsController.
